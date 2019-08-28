@@ -1,25 +1,36 @@
 {
-  "name": "NewPortfolio",
+  "name": "portfolio",
   "version": "1.0.0",
-  "description": "",
+  "description": "server side packages",
   "main": "server.js",
   "dependencies": {
-    "react-router-dom": "^5.0.1"
+    "express": "^4.17.1",
+    "helmet": "^3.20.1",
+    "if-env": "^1.0.4",
+    "mongoose": "^5.6.11",
+    "react-router-dom": "^5.0.1",
+    "styled-components": "^4.3.2"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/seedDB.js",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NFRNO94/NewPortfolio.git"
+    "url": "git+https://github.com/NFRNO94/portfolio.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/NFRNO94/NewPortfolio/issues"
+    "url": "https://github.com/NFRNO94/portfolio/issues"
   },
-  "homepage": "https://github.com/NFRNO94/NewPortfolio#readme"
+  "homepage": "https://github.com/NFRNO94/portfolio#readme"
 }
